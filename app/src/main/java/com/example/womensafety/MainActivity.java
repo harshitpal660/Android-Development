@@ -4,11 +4,10 @@ package com.example.womensafety;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 
 import android.Manifest;
-import android.annotation.SuppressLint;
+
 import android.app.AlertDialog;
 
 import android.content.Context;
@@ -28,9 +27,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.provider.Telephony;
+
 import android.telephony.SmsManager;
-import android.text.Html;
+
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -40,6 +39,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private float lastY;
     private float lastZ;
     private Vibrator vibrator;
-    TextView textView;
     Button buttton;
     ArrayList<String> contactList = new ArrayList<>();
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         Log.d("Women Safety", "Hello");
         buttton = findViewById(R.id.button);
-        textView = findViewById(R.id.textView3);
+
         buttton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +89,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                  else{
                     ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
                  }
+            }
+        });
+
+        final LottieAnimationView add_animation = findViewById(R.id.add_animation);
+        add_animation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                add_animation.setSpeed(1);
+                add_animation.playAnimation();
             }
         });
 //
